@@ -1,2 +1,0 @@
-variable "gcp_region" {
-}

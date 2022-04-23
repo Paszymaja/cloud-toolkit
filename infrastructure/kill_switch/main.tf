@@ -23,7 +23,7 @@ resource "google_pubsub_topic" "kill_switch_topic" {
 
 resource "google_storage_bucket" "kill_switch_bucket" {
   name = "kill_switch_bucket_main"
-  location      = var.gcp_region
+  location      = var.region
 }
 
 resource "google_storage_bucket_object" "archive" {
