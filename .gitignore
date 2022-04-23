@@ -1,6 +1,9 @@
 # GCP SA key
 terraform/account.json
 
+# zip with kill_switch code
+terraform/kill_switch/function.zip
+
 # Local .terraform directories
 **/.terraform/*
 
