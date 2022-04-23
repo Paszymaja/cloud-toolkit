@@ -32,7 +32,7 @@ resource "google_storage_bucket_object" "archive" {
   source = "${path.module}/function.zip"
 }
 
-data "archive_file" "data_backup" {
+data "archive_file" "func_zip" {
   type        = "zip"
   source_dir = "./cloud_functions/kill_switch"
   output_path = "${path.module}/function.zip"
