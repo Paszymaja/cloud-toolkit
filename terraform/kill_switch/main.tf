@@ -29,5 +29,11 @@ resource "google_storage_bucket" "kill_switch_bucket" {
 resource "google_storage_bucket_object" "archive" {
   name   = "function.zip"
   bucket = google_storage_bucket.kill_switch_bucket.name
-  source = "./cloud_functions/kill_switch/function.zip"
+  source = "${path.module}/function.zip"
+}
+
+data "archive_file" "data_backup" {
+  type        = "zip"
+  source_dir = "./cloud_functions/kill_switch"
+  output_path = "${path.module}/function.zip"
 }
