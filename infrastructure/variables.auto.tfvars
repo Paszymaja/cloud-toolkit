@@ -1,0 +1,9 @@
+project_id         = "main-348108"
+region             = "europe-central2"
+zones              = ["europe-west2-a"]
+name               = "gke-cluster"
+machine_type       = "e2-micro"
+min_count          = 0
+max_count          = 2
+disk_size_gb       = 10
+initial_node_count = 1
