@@ -1,7 +1,7 @@
-output ca_certificate {
- value = module.gke.ca_certificate
+output "ca_certificate" {
+  value = module.gke.ca_certificate
 }
 
 output "endpoint" {
- value = module.gke.endpoint
+  value = module.gke.endpoint
 }

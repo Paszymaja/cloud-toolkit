@@ -12,8 +12,8 @@ provider "google-beta" {
 }
 
 provider "kubernetes" {
-  token                  = data.google_client_config.provider.access_token
-  host                   = "https://${module.k8s_cluster.endpoint}"
+  token = data.google_client_config.provider.access_token
+  host  = "https://${module.k8s_cluster.endpoint}"
   cluster_ca_certificate = base64decode(
     module.k8s_cluster.ca_certificate,
   )
@@ -30,17 +30,17 @@ terraform {
   }
   required_providers {
     archive = {
-      source = "hashicorp/archive"
+      source  = "hashicorp/archive"
       version = "~> 2.2.0"
     }
 
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "~> 4.18.0"
     }
 
     google-beta = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "~> 4.18.0"
     }
   }

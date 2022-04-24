@@ -1,14 +1,14 @@
 resource "google_cloudfunctions_function" "kill_switch_func" {
   name        = "kill_switch"
-  description = "Function used to disconnect billing account from project" 
+  description = "Function used to disconnect billing account from project"
   runtime     = "nodejs14"
 
   available_memory_mb   = 128
-  timeout = 20
+  timeout               = 20
   source_archive_bucket = google_storage_bucket.kill_switch_bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
 
-    event_trigger {
+  event_trigger {
     event_type = "providers/cloud.pubsub/eventTypes/topic.publish"
     resource   = google_pubsub_topic.kill_switch_topic.name
   }
@@ -22,8 +22,8 @@ resource "google_pubsub_topic" "kill_switch_topic" {
 }
 
 resource "google_storage_bucket" "kill_switch_bucket" {
-  name = "kill_switch_bucket_main"
-  location      = var.region
+  name     = "kill_switch_bucket_main"
+  location = var.region
 }
 
 resource "google_storage_bucket_object" "archive" {
@@ -34,6 +34,6 @@ resource "google_storage_bucket_object" "archive" {
 
 data "archive_file" "func_zip" {
   type        = "zip"
-  source_dir = "./cloud_functions/kill_switch"
+  source_dir  = "./cloud_functions/kill_switch"
   output_path = "${path.module}/function.zip"
 }
