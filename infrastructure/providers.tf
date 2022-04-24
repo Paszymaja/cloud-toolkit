@@ -1,12 +1,12 @@
 data "google_client_config" "provider" {}
 provider "google" {
-  credentials = "${file(var.credentials)}"
+  credentials = var.gcp_credentials
   project     = var.project_id
   region      = var.region
 }
 
 provider "google-beta" {
-  credentials = "${file(var.credentials)}"
+  credentials = var.gcp_credentials
   project     = var.project_id
   region      = var.region
 }
@@ -21,9 +21,12 @@ provider "kubernetes" {
 
 provider "archive" {}
 terraform {
-  backend "gcs" {
-    bucket      = "main-tf-state"
-    credentials = "account.json"
+  cloud {
+    organization = "bombola"
+
+    workspaces {
+      name = "gh-actions"
+    }
   }
   required_providers {
     archive = {

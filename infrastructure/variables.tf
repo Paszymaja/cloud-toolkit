@@ -2,9 +2,10 @@ variable "gcp_region" {
   default = "europe-central2"
 }
 
-variable "credentials" {
-  type        = string
-  description = "Location of the credential keyfile."
+variable "gcp_credentials" {
+  type = string
+  sensitive = true
+  description = "Google Cloud service account credentials"
 }
 
 variable "project_id" {

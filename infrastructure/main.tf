@@ -5,7 +5,7 @@ module "kill_switch" {
 
 module "k8s_cluster" {
     source = "./k8s_cluster/"
-    credentials = var.credentials
+    credentials = var.gcp_credentials
     region = var.region
     zones = var.zones
     name = var.name
