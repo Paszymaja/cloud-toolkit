@@ -17,7 +17,6 @@ module "gke" {
   remove_default_node_pool   = true
   create_service_account     = true
   grant_registry_access      = true
-  datapath_provider          = "ADVANCED_DATAPATH"
 
 
   node_pools = [
