@@ -8,7 +8,7 @@ updates:
       interval: "daily"
 
   # Maintain dependencies for terraform
-  - package-ecosystem: "infrastructure"
+  - package-ecosystem: "terraform"
     directory: "/infrastructure"
     schedule:
       interval: "daily"
