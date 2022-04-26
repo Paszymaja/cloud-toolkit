@@ -1,6 +1,6 @@
 project_id         = "main-348108"
 region             = "europe-central2"
-zones              = ["europe-west2-a"]
+zones              = ["europe-central2-a"]
 name               = "gke-cluster"
 machine_type       = "e2-micro"
 min_count          = 0

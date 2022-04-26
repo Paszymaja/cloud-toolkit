@@ -5,10 +5,10 @@ module "gke" {
   region                     = var.region
   zones                      = var.zones
   name                       = var.name
-  network                    = "default"
-  subnetwork                 = "default"
-  ip_range_pods              = ""
-  ip_range_services          = ""
+  network                    = var.network
+  subnetwork                 = var.subnetwork
+  ip_range_pods          = var.ip_range_pods_name
+  ip_range_services      = var.ip_range_services_name
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
   network_policy             = true
@@ -36,29 +36,3 @@ module "gke" {
     },
   ]
 }
-
-module "gcp-network" {
-  source       = "terraform-google-modules/network/google"
-  project_id   = var.project_id
-  network_name = "${var.network}"
-  subnets = [
-    {
-      subnet_name   = "${var.subnetwork}"
-      subnet_ip     = "10.10.0.0/16"
-      subnet_region = var.region
-    },
-  ]
-  secondary_ranges = {
-    "${var.subnetwork}" = [
-      {
-        range_name    = var.ip_range_pods_name
-        ip_cidr_range = "10.20.0.0/16"
-      },
-      {
-        range_name    = var.ip_range_services_name
-        ip_cidr_range = "10.30.0.0/16"
-      },
-    ]
-  }
-}
-
