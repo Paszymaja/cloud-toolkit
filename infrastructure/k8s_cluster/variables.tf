@@ -43,8 +43,23 @@ variable "disk_size_gb" {
   description = "Size of the node's disk."
 }
 
-
 variable "initial_node_count" {
   type        = number
   description = "The number of nodes to create in this cluster's default node pool."
+}
+variable "network" {
+  description = "The VPC network created to host the cluster in"
+  default     = "gke-network"
+}
+variable "subnetwork" {
+  description = "The subnetwork created to host the cluster in"
+  default     = "gke-subnet"
+}
+variable "ip_range_pods_name" {
+  description = "The secondary ip range to use for pods"
+  default     = "ip-range-pods"
+}
+variable "ip_range_services_name" {
+  description = "The secondary ip range to use for services"
+  default     = "ip-range-services"
 }
