@@ -3,9 +3,9 @@ module "kill_switch" {
   region = var.region
 }
 module "network" {
-  source = "./network/"
+  source     = "./network/"
   project_id = var.project_id
-  region = var.region
+  region     = var.region
 }
 
 module "k8s_cluster" {
@@ -21,6 +21,6 @@ module "k8s_cluster" {
   disk_size_gb       = var.disk_size_gb
   initial_node_count = var.initial_node_count
 
-  network = module.network.network_name
+  network    = module.network.network_name
   subnetwork = module.network.subnetwork_name
 }

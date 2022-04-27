@@ -7,8 +7,8 @@ module "gke" {
   name                       = var.name
   network                    = var.network
   subnetwork                 = var.subnetwork
-  ip_range_pods          = var.ip_range_pods_name
-  ip_range_services      = var.ip_range_services_name
+  ip_range_pods              = var.ip_range_pods_name
+  ip_range_services          = var.ip_range_services_name
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
   network_policy             = true
