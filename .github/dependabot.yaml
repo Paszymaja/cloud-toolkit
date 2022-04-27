@@ -5,10 +5,10 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   # Maintain dependencies for terraform
   - package-ecosystem: "terraform"
     directory: "/infrastructure"
     schedule:
-      interval: "daily"
+      interval: "weekly"
