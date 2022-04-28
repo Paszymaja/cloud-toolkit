@@ -8,6 +8,10 @@ module "network" {
   region     = var.region
 }
 
+module "dns" {
+  source = "./dns/"
+}
+
 module "k8s_cluster" {
   source             = "./k8s_cluster/"
   credentials        = var.gcp_credentials
