@@ -9,9 +9,9 @@ module "network" {
 }
 
 module "dns" {
-  source = "./dns/"
+  source     = "./dns/"
   project_id = var.project_id
-  region = var.region
+  region     = var.region
 }
 
 module "k8s_cluster" {

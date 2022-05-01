@@ -26,9 +26,9 @@ resource "google_dns_record_set" "dns-A" {
 # }
 
 resource "google_compute_address" "public_ip_address" {
-  provider      = google-beta
-  name          = "paszymaja-ip"
-  address_type  = "EXTERNAL"
-  project       = var.project_id
-  region        = var.region
+  provider     = google-beta
+  name         = "paszymaja-ip"
+  address_type = "EXTERNAL"
+  project      = var.project_id
+  region       = var.region
 }

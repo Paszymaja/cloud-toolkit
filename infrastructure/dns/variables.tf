@@ -1,6 +1,6 @@
 variable "dns_name" {
-  type = string
-  default = "paszymaja.com."
+  type        = string
+  default     = "paszymaja.com."
   description = "name of the DNS entry"
 }
 
@@ -15,7 +15,7 @@ variable "region" {
 }
 
 variable "dns_zone_name" {
-  type = string
-  default = "paszymaja-zone"
+  type        = string
+  default     = "paszymaja-zone"
   description = "name of the DNS zone"
 }
