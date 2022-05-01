@@ -1,7 +1,3 @@
-variable "gcp_region" {
-  default = "europe-central2"
-}
-
 variable "gcp_credentials" {
   type        = string
   sensitive   = true
