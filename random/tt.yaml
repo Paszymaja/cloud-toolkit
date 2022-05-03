@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emissary
+spec:
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://app.getambassador.io'
+    targetRevision: 7.3.2
+    chart: emissary-ingress
+    helm:
+      parameters:
+        - name: adminService.loadBalancerIP
+          value: 34.116.150.213
+        - name: replicaCount
+          value: '1'
+        - name: resource.requests.cpu
+          value: 10m
+        - name: resource.requests.memory
+          value: 128Mi
+        - name: resources.requests.cpu
+          value: 10m
+        - name: resources.requests.memory
+          value: 128Mi
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
