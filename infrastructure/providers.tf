@@ -19,6 +19,15 @@ provider "kubernetes" {
   )
 }
 
+provider "kubectl" {
+  token = data.google_client_config.provider.access_token
+  host  = "https://${module.k8s_cluster.endpoint}"
+  cluster_ca_certificate = base64decode(
+    module.k8s_cluster.ca_certificate,
+  )
+  load_config_file = false
+}
+
 provider "archive" {}
 terraform {
   cloud {
@@ -47,6 +56,10 @@ terraform {
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.0"
+    }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = "1.14.0"
     }
   }
 

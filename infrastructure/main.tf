@@ -14,6 +14,13 @@ module "dns" {
   region     = var.region
 }
 
+module "argo_cd" {
+  depends_on = [
+    module.k8s_cluster
+  ]
+  source = "./argo_cd/"
+}
+
 module "k8s_cluster" {
   source             = "./k8s_cluster/"
   credentials        = var.gcp_credentials
