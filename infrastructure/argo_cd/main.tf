@@ -1,24 +1,27 @@
-data "kubectl_file_documents" "namespace" {
-  content = file("${path.module}/manifests/namespace.yaml")
+data "kubectl_path_documents" "argo" {
+  pattern = "${path.module}/manifests/*.yaml"
 }
 
-data "kubectl_file_documents" "argocd" {
-  content = file("${path.module}/manifests/argo.yaml")
+resource "kubernetes_namespace" "namespace" {
+  metadata {
+    name = "argo"
+  }
 }
 
-resource "kubectl_manifest" "namespace" {
-  count              = length(data.kubectl_file_documents.namespace.documents)
-  yaml_body          = element(data.kubectl_file_documents.namespace.documents, count.index)
-  override_namespace = "argocd"
-}
-
-resource "kubectl_manifest" "argocd" {
+resource "kubectl_manifest" "argo" {
   depends_on = [
-    kubectl_manifest.namespace,
+    kubernetes_namespace.namespace,
   ]
-  count              = length(data.kubectl_file_documents.argocd.documents)
-  yaml_body          = element(data.kubectl_file_documents.argocd.documents, count.index)
-  override_namespace = "argocd"
+  count = length(
+    flatten(
+      toset([
+        for f in fileset(".", data.kubectl_path_documents.argo.pattern) : split("\n---\n", file(f))
+        ]
+      )
+    )
+  )
+  yaml_body          = element(data.kubectl_path_documents.argo.documents, count.index)
+  override_namespace = "argo"
 }
 
 terraform {

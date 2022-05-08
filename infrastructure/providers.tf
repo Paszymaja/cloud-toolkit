@@ -30,12 +30,9 @@ provider "kubectl" {
 
 provider "archive" {}
 terraform {
-  cloud {
-    organization = "bombola"
-
-    workspaces {
-      name = "gh-actions"
-    }
+  backend "gcs" {
+    bucket      = "main-tf-state"
+    credentials = "account.json"
   }
   required_providers {
     archive = {
